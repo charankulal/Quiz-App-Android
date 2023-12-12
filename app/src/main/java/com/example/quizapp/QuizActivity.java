@@ -6,7 +6,9 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -34,12 +36,16 @@ public class QuizActivity extends AppCompatActivity {
 
     private QuestionViewModel questionViewModel;
 
+    private ColorStateList textColorOfButtons;
+    private Handler handler= new Handler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         setupUI();
 
+        textColorOfButtons = rb1.getTextColors();
         questionViewModel = ViewModelProviders.of(this).get(QuestionViewModel.class);
         questionViewModel.getmAllQuestions().observe(this, new Observer<List<Questions>>() {
             @Override
@@ -76,6 +82,34 @@ public class QuizActivity extends AppCompatActivity {
 
     private void startQuiz() {
         setQuestionView();
+
+        rbGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.radio_button1) {
+                    rb1.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.when_answer_selected));
+                    rb2.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
+                    rb3.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
+                    rb4.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
+                } else if (checkedId == R.id.radio_button2) {
+                    rb1.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
+                    rb2.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.when_answer_selected));
+                    rb3.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
+                    rb4.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
+                } else if (checkedId == R.id.radio_button3) {
+                    rb1.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
+                    rb2.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
+                    rb3.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.when_answer_selected));
+                    rb4.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
+                } else if (checkedId == R.id.radio_button4) {
+                    rb1.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
+                    rb2.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
+                    rb3.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
+                    rb4.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.when_answer_selected));
+                }
+            }
+        });
+
         btNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,41 +139,82 @@ public class QuizActivity extends AppCompatActivity {
             case 1:
                 if (currentQ.getAnswer() == answerNr) {
                     rb1.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.when_answer_correct));
-                    setQuestionView();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            setQuestionView();
+                        }
+                    },500);
+
 
                 } else {
                     changetoIncorrectColor(rbSelected);
-                    setQuestionView();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            setQuestionView();
+                        }
+                    },500);
                 }
                 break;
             case 2:
                 if (currentQ.getAnswer() == answerNr) {
                     rb2.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.when_answer_correct));
-                    setQuestionView();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            setQuestionView();
+                        }
+                    },500);
 
                 } else {
                     changetoIncorrectColor(rbSelected);
-                    setQuestionView();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            setQuestionView();
+                        }
+                    },500);
                 }
                 break;
             case 3:
                 if (currentQ.getAnswer() == answerNr) {
                     rb3.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.when_answer_correct));
-                    setQuestionView();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            setQuestionView();
+                        }
+                    },500);
 
                 } else {
                     changetoIncorrectColor(rbSelected);
-                    setQuestionView();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            setQuestionView();
+                        }
+                    },500);
                 }
                 break;
             case 4:
                 if (currentQ.getAnswer() == answerNr) {
                     rb4.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.when_answer_correct));
-                    setQuestionView();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            setQuestionView();
+                        }
+                    },500);
 
                 } else {
                     changetoIncorrectColor(rbSelected);
-                    setQuestionView();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            setQuestionView();
+                        }
+                    },500);
                 }
                 break;
 
@@ -152,6 +227,10 @@ public class QuizActivity extends AppCompatActivity {
 
     private void setQuestionView() {
         rbGroup.clearCheck();
+        rb1.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
+        rb2.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
+        rb3.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
+        rb4.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
         questionTotalCount = quesList.size();
         Collections.shuffle(quesList);
         if (questionCounter < questionTotalCount - 1) {
