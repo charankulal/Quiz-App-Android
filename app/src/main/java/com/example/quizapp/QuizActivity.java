@@ -38,7 +38,9 @@ public class QuizActivity extends AppCompatActivity {
     private QuestionViewModel questionViewModel;
 
     private ColorStateList textColorOfButtons;
-    private Handler handler= new Handler();
+    private Handler handler = new Handler();
+    private int correctAns = 0, wrongAns = 0,score=0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +74,8 @@ public class QuizActivity extends AppCompatActivity {
         rb4 = findViewById(R.id.radio_button4);
 
         btNext = findViewById(R.id.button_next);
+        textViewCorrect.setText("Correct: " + String.valueOf(correctAns));
+        textViewWrong.setText("Wrong: " + String.valueOf(wrongAns));
 
     }
 
@@ -141,90 +145,114 @@ public class QuizActivity extends AppCompatActivity {
                 if (currentQ.getAnswer() == answerNr) {
                     rb1.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.when_answer_correct));
                     rb1.setTextColor(Color.WHITE);
+                    correctAns++;
+                    textViewCorrect.setText("Correct: " + String.valueOf(correctAns));
+                    score+=10;
+                    textViewScore.setText("Score: "+String.valueOf(score));
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             setQuestionView();
                         }
-                    },500);
+                    }, 500);
 
 
                 } else {
                     changetoIncorrectColor(rbSelected);
+                    wrongAns++;
+                    textViewWrong.setText("Wrong: " + String.valueOf(wrongAns));
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             setQuestionView();
                         }
-                    },500);
+                    }, 500);
                 }
                 break;
             case 2:
                 if (currentQ.getAnswer() == answerNr) {
                     rb2.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.when_answer_correct));
                     rb2.setTextColor(Color.WHITE);
+                    correctAns++;
+                    textViewCorrect.setText("Correct: " + String.valueOf(correctAns));
+                    score+=10;
+                    textViewScore.setText("Score: "+String.valueOf(score));
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             setQuestionView();
                         }
-                    },500);
+                    }, 500);
 
                 } else {
                     changetoIncorrectColor(rbSelected);
+                    wrongAns++;
+                    textViewWrong.setText("Wrong: " + String.valueOf(wrongAns));
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             setQuestionView();
                         }
-                    },500);
+                    }, 500);
                 }
                 break;
             case 3:
                 if (currentQ.getAnswer() == answerNr) {
                     rb3.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.when_answer_correct));
                     rb3.setTextColor(Color.WHITE);
+                    correctAns++;
+                    textViewCorrect.setText("Correct: " + String.valueOf(correctAns));
+                    score+=10;
+                    textViewScore.setText("Score: "+String.valueOf(score));
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             setQuestionView();
                         }
-                    },500);
+                    }, 500);
 
                 } else {
                     changetoIncorrectColor(rbSelected);
+                    wrongAns++;
+                    textViewWrong.setText("Wrong: " + String.valueOf(wrongAns));
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             setQuestionView();
                         }
-                    },500);
+                    }, 500);
                 }
                 break;
             case 4:
                 if (currentQ.getAnswer() == answerNr) {
                     rb4.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.when_answer_correct));
                     rb4.setTextColor(Color.WHITE);
+                    correctAns++;
+                    textViewCorrect.setText("Correct: " + String.valueOf(correctAns));
+                    score+=10;
+                    textViewScore.setText("Score: "+String.valueOf(score));
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             setQuestionView();
                         }
-                    },500);
+                    }, 500);
 
                 } else {
                     changetoIncorrectColor(rbSelected);
+                    wrongAns++;
+                    textViewWrong.setText("Wrong: " + String.valueOf(wrongAns));
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             setQuestionView();
                         }
-                    },500);
+                    }, 500);
                 }
                 break;
 
         }
-        if (questionCounter==questionTotalCount){
+        if (questionCounter == questionTotalCount) {
             btNext.setText("Confirm and Finish");
         }
     }
@@ -258,7 +286,7 @@ public class QuizActivity extends AppCompatActivity {
             answered = false;
 
             btNext.setText("Confirm");
-            textViewQuestionCount.setText("Questions:" + questionCounter + "/" +( questionTotalCount-1));
+            textViewQuestionCount.setText("Questions:" + questionCounter + "/" + (questionTotalCount - 1));
         } else {
             Toast.makeText(this, "Quiz Finished", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getApplicationContext(), QuizActivity.class);
