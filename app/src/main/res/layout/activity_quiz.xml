@@ -63,7 +63,7 @@
             android:text="00:30"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:textAlignment="textEnd"
+            android:textAlignment="center"
             android:textSize="20sp"/>
 
     </LinearLayout>
