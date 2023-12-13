@@ -11,14 +11,14 @@ public class QuestionsRepository {
     private QuestionDao mQuestionDao;
     private LiveData<List<Questions>> mAllQuestions;
 
-    public QuestionsRepository(Application application)
-    {
-        QuestionRoomDatabase db= QuestionRoomDatabase.getInstance(application);
-        mQuestionDao=db.questionDao();
-        mAllQuestions=mQuestionDao.getAllQuestions();
+    public QuestionsRepository(Application application) {
+        QuestionRoomDatabase db = QuestionRoomDatabase.getInstance(application);
+        mQuestionDao = db.questionDao();
+        mAllQuestions = mQuestionDao.getAllQuestions();
 
     }
-    public LiveData<List<Questions>> getmAllQuestions(){
+
+    public LiveData<List<Questions>> getmAllQuestions() {
         return mAllQuestions;
     }
 }

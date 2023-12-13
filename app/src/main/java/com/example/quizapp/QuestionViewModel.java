@@ -12,14 +12,13 @@ public class QuestionViewModel extends AndroidViewModel {
 
     private LiveData<List<Questions>> mAllQuestions;
 
-    public QuestionViewModel(Application application)
-    {
+    public QuestionViewModel(Application application) {
         super(application);
-        mRepository= new QuestionsRepository(application);
-        mAllQuestions= mRepository.getmAllQuestions();
+        mRepository = new QuestionsRepository(application);
+        mAllQuestions = mRepository.getmAllQuestions();
     }
-    LiveData<List<Questions>> getmAllQuestions()
-    {
+
+    LiveData<List<Questions>> getmAllQuestions() {
         return mAllQuestions;
     }
 }

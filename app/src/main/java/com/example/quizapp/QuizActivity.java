@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -139,6 +140,7 @@ public class QuizActivity extends AppCompatActivity {
             case 1:
                 if (currentQ.getAnswer() == answerNr) {
                     rb1.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.when_answer_correct));
+                    rb1.setTextColor(Color.WHITE);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -160,6 +162,7 @@ public class QuizActivity extends AppCompatActivity {
             case 2:
                 if (currentQ.getAnswer() == answerNr) {
                     rb2.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.when_answer_correct));
+                    rb2.setTextColor(Color.WHITE);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -180,6 +183,7 @@ public class QuizActivity extends AppCompatActivity {
             case 3:
                 if (currentQ.getAnswer() == answerNr) {
                     rb3.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.when_answer_correct));
+                    rb3.setTextColor(Color.WHITE);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -200,6 +204,7 @@ public class QuizActivity extends AppCompatActivity {
             case 4:
                 if (currentQ.getAnswer() == answerNr) {
                     rb4.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.when_answer_correct));
+                    rb4.setTextColor(Color.WHITE);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -219,10 +224,14 @@ public class QuizActivity extends AppCompatActivity {
                 break;
 
         }
+        if (questionCounter==questionTotalCount){
+            btNext.setText("Confirm and Finish");
+        }
     }
 
     private void changetoIncorrectColor(RadioButton rbSelected) {
         rbSelected.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.when_answer_wrong));
+        rbSelected.setTextColor(Color.WHITE);
     }
 
     private void setQuestionView() {
@@ -231,6 +240,10 @@ public class QuizActivity extends AppCompatActivity {
         rb2.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
         rb3.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
         rb4.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.default_option_bg));
+        rb1.setTextColor(Color.BLACK);
+        rb2.setTextColor(Color.BLACK);
+        rb3.setTextColor(Color.BLACK);
+        rb4.setTextColor(Color.BLACK);
         questionTotalCount = quesList.size();
         Collections.shuffle(quesList);
         if (questionCounter < questionTotalCount - 1) {
@@ -245,7 +258,7 @@ public class QuizActivity extends AppCompatActivity {
             answered = false;
 
             btNext.setText("Confirm");
-            textViewQuestionCount.setText("Questions:" + questionCounter + "/" + questionTotalCount);
+            textViewQuestionCount.setText("Questions:" + questionCounter + "/" +( questionTotalCount-1));
         } else {
             Toast.makeText(this, "Quiz Finished", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getApplicationContext(), QuizActivity.class);
