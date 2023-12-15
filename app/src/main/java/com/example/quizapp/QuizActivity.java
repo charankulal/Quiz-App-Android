@@ -41,6 +41,8 @@ public class QuizActivity extends AppCompatActivity {
     private Handler handler = new Handler();
     private int correctAns = 0, wrongAns = 0,score=0;
 
+    private FinalScoreDialog finalScoreDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,8 @@ public class QuizActivity extends AppCompatActivity {
         setupUI();
 
         textColorOfButtons = rb1.getTextColors();
+        finalScoreDialog=new FinalScoreDialog(this);
+
         questionViewModel = ViewModelProviders.of(this).get(QuestionViewModel.class);
         questionViewModel.getmAllQuestions().observe(this, new Observer<List<Questions>>() {
             @Override
@@ -273,7 +277,7 @@ public class QuizActivity extends AppCompatActivity {
         rb3.setTextColor(Color.BLACK);
         rb4.setTextColor(Color.BLACK);
         questionTotalCount = quesList.size();
-        Collections.shuffle(quesList);
+//        Collections.shuffle(quesList);
         if (questionCounter < questionTotalCount - 1) {
             currentQ = quesList.get(questionCounter);
             txtQuestion.setText(currentQ.getQuestion());
@@ -289,8 +293,12 @@ public class QuizActivity extends AppCompatActivity {
             textViewQuestionCount.setText("Questions:" + questionCounter + "/" + (questionTotalCount - 1));
         } else {
             Toast.makeText(this, "Quiz Finished", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getApplicationContext(), QuizActivity.class);
-            startActivity(intent);
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    finalScoreDialog.finalScoreDialog(correctAns,wrongAns);
+                }
+            },1000);
         }
     }
 }
