@@ -5,7 +5,7 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.content.Intent;
+import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,9 +16,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class QuizActivity extends AppCompatActivity {
@@ -35,14 +32,12 @@ public class QuizActivity extends AppCompatActivity {
     private int questionCounter = 0, questionTotalCount;
 
 
-    private QuestionViewModel questionViewModel;
-
-    private ColorStateList textColorOfButtons;
-    private Handler handler = new Handler();
+    private final Handler handler = new Handler();
     private int correctAns = 0, wrongAns = 0,score=0;
 
     private FinalScoreDialog finalScoreDialog;
     private int totalSizeOfQuiz;
+    private WrongDialog wrongDialog;
 
 
     @Override
@@ -51,10 +46,11 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
         setupUI();
 
-        textColorOfButtons = rb1.getTextColors();
+        ColorStateList textColorOfButtons = rb1.getTextColors();
         finalScoreDialog=new FinalScoreDialog(this);
+        wrongDialog=new WrongDialog(this);
 
-        questionViewModel = ViewModelProviders.of(this).get(QuestionViewModel.class);
+        QuestionViewModel questionViewModel = ViewModelProviders.of(this).get(QuestionViewModel.class);
         questionViewModel.getmAllQuestions().observe(this, new Observer<List<Questions>>() {
             @Override
             public void onChanged(List<Questions> questions) {
@@ -64,6 +60,7 @@ public class QuizActivity extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("SetTextI18n")
     void setupUI() {
         textViewCorrect = findViewById(R.id.txtCorrect);
         textViewCountDownTimer = findViewById(R.id.txtTimer);
@@ -166,6 +163,8 @@ public class QuizActivity extends AppCompatActivity {
                     changetoIncorrectColor(rbSelected);
                     wrongAns++;
                     textViewWrong.setText("Wrong: " + String.valueOf(wrongAns));
+                    final String correctAnswer=(String) rb1.getText();
+                    wrongDialog.wrongDialog(correctAnswer);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -193,6 +192,8 @@ public class QuizActivity extends AppCompatActivity {
                     changetoIncorrectColor(rbSelected);
                     wrongAns++;
                     textViewWrong.setText("Wrong: " + String.valueOf(wrongAns));
+                    final String correctAnswer=(String) rb2.getText();
+                    wrongDialog.wrongDialog(correctAnswer);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -220,6 +221,8 @@ public class QuizActivity extends AppCompatActivity {
                     changetoIncorrectColor(rbSelected);
                     wrongAns++;
                     textViewWrong.setText("Wrong: " + String.valueOf(wrongAns));
+                    final String correctAnswer=(String) rb3.getText();
+                    wrongDialog.wrongDialog(correctAnswer);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -247,6 +250,8 @@ public class QuizActivity extends AppCompatActivity {
                     changetoIncorrectColor(rbSelected);
                     wrongAns++;
                     textViewWrong.setText("Wrong: " + String.valueOf(wrongAns));
+                    final String correctAnswer=(String) rb4.getText();
+                    wrongDialog.wrongDialog(correctAnswer);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
