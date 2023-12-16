@@ -42,6 +42,7 @@ public class QuizActivity extends AppCompatActivity {
     private int correctAns = 0, wrongAns = 0,score=0;
 
     private FinalScoreDialog finalScoreDialog;
+    private int totalSizeOfQuiz;
 
 
     @Override
@@ -293,10 +294,11 @@ public class QuizActivity extends AppCompatActivity {
             textViewQuestionCount.setText("Questions:" + questionCounter + "/" + (questionTotalCount - 1));
         } else {
             Toast.makeText(this, "Quiz Finished", Toast.LENGTH_SHORT).show();
+            totalSizeOfQuiz=quesList.size();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    finalScoreDialog.finalScoreDialog(correctAns,wrongAns);
+                    finalScoreDialog.finalScoreDialog(correctAns,wrongAns,totalSizeOfQuiz);
                 }
             },1000);
         }

@@ -19,12 +19,12 @@ public class FinalScoreDialog {
         this.mContext = mContext;
     }
 
-    public void finalScoreDialog(int correctAnswer, int wrongAnswer) {
+    public void finalScoreDialog(int correctAnswer, int wrongAnswer, int totalSizeOfQuiz) {
         finalScoreDialog = new Dialog(mContext);
         quizActivityOb = new QuizActivity();
         finalScoreDialog.setContentView(R.layout.final_score_dialog);
         final Button btFinalScoreDialog = (Button) finalScoreDialog.findViewById(R.id.bt_final_dialog);
-        finalScore(correctAnswer, wrongAnswer);
+        finalScore(correctAnswer, wrongAnswer, totalSizeOfQuiz);
 
         btFinalScoreDialog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,19 +40,29 @@ public class FinalScoreDialog {
 
     }
 
-    private void finalScore(int correctAnswer, int wrongAnswer) {
+    private void finalScore(int correctAnswer, int wrongAnswer, int totalSizeOfQuiz) {
         int tempScore = 0;
         textViewFinalScore = (TextView) finalScoreDialog.findViewById(R.id.textview_final_score);
 
-        if (correctAnswer > wrongAnswer) {
+        if (correctAnswer == totalSizeOfQuiz) {
             //When user is correct then he will get 20 points or else lose 5 points
             tempScore = (correctAnswer * 20) - (wrongAnswer * 5);
+            textViewFinalScore.setText(String.valueOf(tempScore));
 
-        }else {
+        } else if (wrongAnswer == totalSizeOfQuiz) {
+            tempScore = 0;
+            textViewFinalScore.setText(String.valueOf(tempScore));
+        } else if (correctAnswer > wrongAnswer) {
+            tempScore = (correctAnswer * 20) - (wrongAnswer * 5);
+            textViewFinalScore.setText(String.valueOf(tempScore));
+        } else if (wrongAnswer > correctAnswer) {
             tempScore = (wrongAnswer * 5) - (correctAnswer * 20);
+            textViewFinalScore.setText(String.valueOf(tempScore));
+        } else if (wrongAnswer == correctAnswer) {
+            tempScore=(correctAnswer * 20) - (wrongAnswer * 5);
+            textViewFinalScore.setText(String.valueOf(tempScore));
         }
 
-        textViewFinalScore.setText(String.valueOf(tempScore));
 
     }
 }
