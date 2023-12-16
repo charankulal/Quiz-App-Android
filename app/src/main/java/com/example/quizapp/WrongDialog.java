@@ -26,7 +26,7 @@ public class WrongDialog {
         wrongAnswerDialog.setContentView(R.layout.wrong_dialog);
         final Button btwrongAnswerDialog = (Button) wrongAnswerDialog.findViewById(R.id.bt_wrong_dialog);
         TextView textView= (TextView) wrongAnswerDialog.findViewById(R.id.textview_correct_answer);
-        textView.setText("Correct Answer: "+correctAnswer);
+        textView.setText("Ans : "+correctAnswer);
 
         btwrongAnswerDialog.setOnClickListener(new View.OnClickListener() {
             @Override

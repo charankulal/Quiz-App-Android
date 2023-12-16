@@ -38,6 +38,7 @@ public class QuizActivity extends AppCompatActivity {
     private FinalScoreDialog finalScoreDialog;
     private int totalSizeOfQuiz;
     private WrongDialog wrongDialog;
+    private CorrectDialog correctDialog;
 
 
     @Override
@@ -49,6 +50,7 @@ public class QuizActivity extends AppCompatActivity {
         ColorStateList textColorOfButtons = rb1.getTextColors();
         finalScoreDialog=new FinalScoreDialog(this);
         wrongDialog=new WrongDialog(this);
+        correctDialog=new CorrectDialog(this);
 
         QuestionViewModel questionViewModel = ViewModelProviders.of(this).get(QuestionViewModel.class);
         questionViewModel.getmAllQuestions().observe(this, new Observer<List<Questions>>() {
@@ -151,6 +153,7 @@ public class QuizActivity extends AppCompatActivity {
                     textViewCorrect.setText("Correct: " + String.valueOf(correctAns));
                     score+=10;
                     textViewScore.setText("Score: "+String.valueOf(score));
+                    correctDialog.correctDialog(score);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -181,6 +184,7 @@ public class QuizActivity extends AppCompatActivity {
                     textViewCorrect.setText("Correct: " + String.valueOf(correctAns));
                     score+=10;
                     textViewScore.setText("Score: "+String.valueOf(score));
+                    correctDialog.correctDialog(score);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -210,6 +214,7 @@ public class QuizActivity extends AppCompatActivity {
                     textViewCorrect.setText("Correct: " + String.valueOf(correctAns));
                     score+=10;
                     textViewScore.setText("Score: "+String.valueOf(score));
+                    correctDialog.correctDialog(score);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -239,6 +244,7 @@ public class QuizActivity extends AppCompatActivity {
                     textViewCorrect.setText("Correct: " + String.valueOf(correctAns));
                     score+=10;
                     textViewScore.setText("Score: "+String.valueOf(score));
+                    correctDialog.correctDialog(score);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
