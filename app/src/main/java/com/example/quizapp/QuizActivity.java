@@ -39,6 +39,8 @@ public class QuizActivity extends AppCompatActivity {
     private int totalSizeOfQuiz;
     private WrongDialog wrongDialog;
     private CorrectDialog correctDialog;
+    private int flag=0;
+    private PlayAudioForAnswers playAudioForAnswers;
 
 
     @Override
@@ -51,6 +53,7 @@ public class QuizActivity extends AppCompatActivity {
         finalScoreDialog=new FinalScoreDialog(this);
         wrongDialog=new WrongDialog(this);
         correctDialog=new CorrectDialog(this);
+        playAudioForAnswers= new PlayAudioForAnswers(this);
 
         QuestionViewModel questionViewModel = ViewModelProviders.of(this).get(QuestionViewModel.class);
         questionViewModel.getmAllQuestions().observe(this, new Observer<List<Questions>>() {
@@ -154,6 +157,8 @@ public class QuizActivity extends AppCompatActivity {
                     score+=10;
                     textViewScore.setText("Score: "+String.valueOf(score));
                     correctDialog.correctDialog(score);
+                    flag=1;
+                    playAudioForAnswers.setAudioForAnswers(flag);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -168,6 +173,8 @@ public class QuizActivity extends AppCompatActivity {
                     textViewWrong.setText("Wrong: " + String.valueOf(wrongAns));
                     final String correctAnswer=(String) rb1.getText();
                     wrongDialog.wrongDialog(correctAnswer);
+                    flag=2;
+                    playAudioForAnswers.setAudioForAnswers(flag);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -185,6 +192,8 @@ public class QuizActivity extends AppCompatActivity {
                     score+=10;
                     textViewScore.setText("Score: "+String.valueOf(score));
                     correctDialog.correctDialog(score);
+                    flag=1;
+                    playAudioForAnswers.setAudioForAnswers(flag);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -198,6 +207,8 @@ public class QuizActivity extends AppCompatActivity {
                     textViewWrong.setText("Wrong: " + String.valueOf(wrongAns));
                     final String correctAnswer=(String) rb2.getText();
                     wrongDialog.wrongDialog(correctAnswer);
+                    flag=2;
+                    playAudioForAnswers.setAudioForAnswers(flag);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -215,6 +226,8 @@ public class QuizActivity extends AppCompatActivity {
                     score+=10;
                     textViewScore.setText("Score: "+String.valueOf(score));
                     correctDialog.correctDialog(score);
+                    flag=1;
+                    playAudioForAnswers.setAudioForAnswers(flag);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -228,6 +241,8 @@ public class QuizActivity extends AppCompatActivity {
                     textViewWrong.setText("Wrong: " + String.valueOf(wrongAns));
                     final String correctAnswer=(String) rb3.getText();
                     wrongDialog.wrongDialog(correctAnswer);
+                    flag=2;
+                    playAudioForAnswers.setAudioForAnswers(flag);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -245,6 +260,8 @@ public class QuizActivity extends AppCompatActivity {
                     score+=10;
                     textViewScore.setText("Score: "+String.valueOf(score));
                     correctDialog.correctDialog(score);
+                    flag=1;
+                    playAudioForAnswers.setAudioForAnswers(flag);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -258,6 +275,8 @@ public class QuizActivity extends AppCompatActivity {
                     textViewWrong.setText("Wrong: " + String.valueOf(wrongAns));
                     final String correctAnswer=(String) rb4.getText();
                     wrongDialog.wrongDialog(correctAnswer);
+                    flag=2;
+                    playAudioForAnswers.setAudioForAnswers(flag);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
