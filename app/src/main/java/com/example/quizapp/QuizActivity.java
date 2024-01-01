@@ -6,9 +6,11 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +19,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.List;
+import java.util.Locale;
 
 public class QuizActivity extends AppCompatActivity {
 
@@ -41,6 +44,12 @@ public class QuizActivity extends AppCompatActivity {
     private CorrectDialog correctDialog;
     private int flag=0;
     private PlayAudioForAnswers playAudioForAnswers;
+    private static final long COUNTDOWN_IN_MILLIS=30000;
+    private CountDownTimer countDownTimer;
+    private long timeLeftInMillis;
+
+    public ColorStateList textColorOfButtons;
+
 
 
     @Override
@@ -49,7 +58,7 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
         setupUI();
 
-        ColorStateList textColorOfButtons = rb1.getTextColors();
+        textColorOfButtons = rb1.getTextColors();
         finalScoreDialog=new FinalScoreDialog(this);
         wrongDialog=new WrongDialog(this);
         correctDialog=new CorrectDialog(this);
@@ -138,6 +147,7 @@ public class QuizActivity extends AppCompatActivity {
 
     private void quizOperation() {
         answered = true;
+        countDownTimer.cancel();
         RadioButton rbSelected = findViewById(rbGroup.getCheckedRadioButtonId());
         int answerNr = rbGroup.indexOfChild(rbSelected) + 1;
         // checkSolutions
@@ -322,6 +332,8 @@ public class QuizActivity extends AppCompatActivity {
 
             btNext.setText("Confirm");
             textViewQuestionCount.setText("Questions:" + questionCounter + "/" + (questionTotalCount - 1));
+            timeLeftInMillis= COUNTDOWN_IN_MILLIS;
+            startCountDown();
         } else {
             Toast.makeText(this, "Quiz Finished", Toast.LENGTH_SHORT).show();
             totalSizeOfQuiz=quesList.size();
@@ -333,4 +345,63 @@ public class QuizActivity extends AppCompatActivity {
             },1000);
         }
     }
+
+    private void startCountDown() {
+        countDownTimer= new CountDownTimer(timeLeftInMillis,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timeLeftInMillis=millisUntilFinished;
+                updateCountDownText();
+            }
+
+            @Override
+            public void onFinish() {
+                timeLeftInMillis=0;
+                updateCountDownText();
+            }
+        }.start();
+    }
+
+    private void updateCountDownText() {
+        int minutes=(int) (timeLeftInMillis/1000)/60;
+        int seconds = (int) (timeLeftInMillis/1000)%60;
+
+        String timeFormatted= String.format(Locale.getDefault(),"%02d:%02d",minutes,seconds);
+        textViewCountDownTimer.setText(timeFormatted);
+        if (timeLeftInMillis<10000)
+        {
+            textViewCountDownTimer.setTextColor(Color.RED);
+            flag=3;
+            playAudioForAnswers.setAudioForAnswers(flag);
+        }
+        else
+        {
+            textViewCountDownTimer.setTextColor(textColorOfButtons);
+        }
+
+        if (timeLeftInMillis==0)
+        {
+            Toast.makeText(this, "Time is up", Toast.LENGTH_SHORT).show();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent= new Intent(getApplicationContext(), QuizActivity.class);
+                    startActivity(intent);
+                }
+            },2000);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(countDownTimer!=null)
+        {
+            countDownTimer.cancel();
+        }
+    }
+
+
+
+
 }
