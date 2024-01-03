@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ecdaa3"
+    android:gravity="center"
+    tools:context=".ResultActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingEnd="30dp"
+        android:paddingStart="30dp"
+        android:background="#d2bd7a"
+        >
+        <TextView
+            android:id="@+id/result_tv_HighScore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="High Score: "
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:textAlignment="textStart"
+
+            />
+
+        <TextView
+            android:id="@+id/result_tv_Num_of_Ques"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total Questions: "
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:textAlignment="textStart"
+
+            />
+        <TextView
+            android:id="@+id/result_tv_correct_Ques"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Correct: "
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:textAlignment="textStart"
+
+            />
+        <TextView
+            android:id="@+id/result_tv_wrong_Ques"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Wrong: "
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:textAlignment="textStart"
+
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <Button
+                android:id="@+id/bt_result_play_again"
+                android:layout_weight="1"
+                android:text="Play Again"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                />
+            <Button
+                android:id="@+id/bt_result_main_menu"
+                android:text="Main Menu"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:padding="10dp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
