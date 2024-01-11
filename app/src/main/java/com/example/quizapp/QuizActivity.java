@@ -336,11 +336,11 @@ public class QuizActivity extends AppCompatActivity {
             startCountDown();
         } else {
             Toast.makeText(this, "Quiz Finished", Toast.LENGTH_SHORT).show();
-            totalSizeOfQuiz=quesList.size();
+
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    finalScoreDialog.finalScoreDialog(correctAns,wrongAns,totalSizeOfQuiz);
+                    resultData();
                 }
             },1000);
         }
@@ -401,7 +401,14 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 
-
+    private void resultData(){
+        Intent resultOfQuiz= new Intent(QuizActivity.this,ResultActivity.class);
+        resultOfQuiz.putExtra("UserScore",score);
+        resultOfQuiz.putExtra("TotalQuizQuestion",(questionTotalCount-1));
+        resultOfQuiz.putExtra("CorrectQuestions",correctAns);
+        resultOfQuiz.putExtra("WrongQuestions",wrongAns);
+        startActivity(resultOfQuiz);
+    }
 
 
 }
