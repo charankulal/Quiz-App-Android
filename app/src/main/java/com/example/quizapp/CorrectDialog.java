@@ -11,12 +11,14 @@ public class CorrectDialog {
 
     private Context mContext;
     private Dialog correctDialog;
+    private QuizActivity mquizActivity;
 
     public CorrectDialog(Context mContext) {
         this.mContext = mContext;
     }
 
-    public void correctDialog(int score) {
+    public void correctDialog(int score, QuizActivity quizActivity) {
+        mquizActivity = quizActivity;
         correctDialog = new Dialog(mContext);
         correctDialog.setContentView(R.layout.correct_dialog);
         final Button btcorrectDialog = (Button) correctDialog.findViewById(R.id.bt_score_dialog);
@@ -26,6 +28,7 @@ public class CorrectDialog {
             @Override
             public void onClick(View v) {
                 correctDialog.dismiss();
+                mquizActivity.setQuestionView();
             }
         });
         correctDialog.show();
@@ -35,8 +38,8 @@ public class CorrectDialog {
     }
 
     private void score(int score) {
-        TextView textView=(TextView) correctDialog.findViewById(R.id.textview_score);
-        textView.setText("Score: "+String.valueOf(score));
+        TextView textView = (TextView) correctDialog.findViewById(R.id.textview_score);
+        textView.setText("Score: " + String.valueOf(score));
     }
 
 

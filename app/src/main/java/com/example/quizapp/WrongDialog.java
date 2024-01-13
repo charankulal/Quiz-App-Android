@@ -14,14 +14,14 @@ public class WrongDialog {
     private Context mContext;
     private Dialog wrongAnswerDialog;
     private QuizActivity quizActivityOb;
-
-    private TextView textViewFinalScore;
+    private QuizActivity mquizActivity;
 
     public WrongDialog(Context mContext) {
         this.mContext = mContext;
     }
 
-    public void wrongDialog(String correctAnswer) {
+    public void wrongDialog(String correctAnswer, QuizActivity quizActivity) {
+        mquizActivity=quizActivity;
         wrongAnswerDialog = new Dialog(mContext);
         wrongAnswerDialog.setContentView(R.layout.wrong_dialog);
         final Button btwrongAnswerDialog = (Button) wrongAnswerDialog.findViewById(R.id.bt_wrong_dialog);
@@ -32,6 +32,7 @@ public class WrongDialog {
             @Override
             public void onClick(View v) {
                 wrongAnswerDialog.dismiss();
+                mquizActivity.setQuestionView();
             }
         });
         wrongAnswerDialog.show();

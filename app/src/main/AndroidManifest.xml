@@ -16,13 +16,13 @@
             android:name=".SplashActivity"
             android:exported="false" />
         <activity
-            android:name=".PlayActivity"
+            android:name=".QuizActivity"
             android:exported="false" />
         <activity
             android:name=".ResultActivity"
             android:exported="false" />
         <activity
-            android:name=".QuizActivity"
+            android:name=".PlayActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
