@@ -4,49 +4,45 @@
     android:layout_width="300dp"
     android:layout_height="250dp"
     android:layout_gravity="center"
-    android:background="#fff">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="#FF0000"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp">
+    android:background="@drawable/dialogs_background">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Wrong Answer"
+            android:layout_marginTop="15dp"
             android:padding="5dp"
             android:textStyle="bold"
             android:textColor="#ffffff"
             android:layout_gravity="center"
             android:textSize="30sp"/>
 
-    </LinearLayout>
+
     <TextView
         android:id="@+id/textview_correct_answer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your Final Score"
+        android:text="Final Score"
         android:singleLine="true"
         android:ellipsize="end"
         android:paddingLeft="2dp"
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
         android:paddingRight="2dp"
+
         android:textStyle="bold"
         android:textColor="#000"
         android:layout_gravity="center"
         android:textSize="25sp"
         android:layout_marginBottom="20dp"
-        android:layout_marginTop="20sp"/>
+        android:layout_marginTop="30dp"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/bt_wrong_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="#473804"
+        android:background="@drawable/dialog_bt_bg"
         android:text="OK"
         android:textColor="#fff"
         android:textSize="30sp"

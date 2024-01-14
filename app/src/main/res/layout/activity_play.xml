@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ecdaa3"
+    android:background="@drawable/main_background"
     android:gravity="center"
     tools:context=".PlayActivity">
     <LinearLayout
@@ -12,23 +12,18 @@
         android:orientation="vertical"
         android:layout_marginBottom="40dp"
         >
-        <TextView
+        <ImageView
+            android:src="@drawable/logo_for_play_screen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textAlignment="center"
-            android:textSize="40sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
             android:layout_marginBottom="40dp"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/bt_play"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Play"
             android:layout_gravity="center"
-            android:background="@drawable/confirm_button_bg"
+            android:background="@drawable/play"
             android:textStyle="bold"
             android:textAlignment="center"
             android:textAllCaps="false"

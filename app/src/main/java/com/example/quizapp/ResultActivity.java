@@ -96,4 +96,9 @@ public class ResultActivity extends AppCompatActivity {
         }
         backPressed = System.currentTimeMillis();
     }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
 }
