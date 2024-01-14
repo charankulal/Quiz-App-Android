@@ -50,6 +50,7 @@ public class QuizActivity extends AppCompatActivity {
     private long timeLeftInMillis;
 
     public ColorStateList textColorOfButtons;
+    private long backPressed;
 
 
     @Override
@@ -362,6 +363,17 @@ public class QuizActivity extends AppCompatActivity {
         resultOfQuiz.putExtra("CorrectQuestions", correctAns);
         resultOfQuiz.putExtra("WrongQuestions", wrongAns);
         startActivity(resultOfQuiz);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (backPressed + 2000 > System.currentTimeMillis()) {
+            Intent intent = new Intent(QuizActivity.this, PlayActivity.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Press again to Exit", Toast.LENGTH_SHORT).show();
+        }
+        backPressed = System.currentTimeMillis();
     }
 
 
