@@ -293,7 +293,11 @@ public class QuizActivity extends AppCompatActivity {
             startCountDown();
         } else {
             Toast.makeText(this, "Quiz Finished", Toast.LENGTH_SHORT).show();
-
+            rb1.setClickable(false);
+            rb2.setClickable(false);
+            rb3.setClickable(false);
+            rb4.setClickable(false);
+            btNext.setClickable(false);
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {

@@ -10,7 +10,7 @@ import java.util.List;
 @Dao
 public interface QuestionDao {
 
-    @Query("SELECT * from questions_table")
+    @Query("SELECT  * from questions_table order by RANDOM() LIMIT 6")
     LiveData<List<Questions>> getAllQuestions();
 
     @Insert
