@@ -66,4 +66,10 @@ public class SplashActivity extends AppCompatActivity {
     private void goToPlayActivity() {
         startActivityForResult(new Intent(SplashActivity.this, PlayActivity.class), EXIT_CODE);
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
 }

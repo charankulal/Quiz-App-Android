@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -43,5 +44,10 @@ public class PlayActivity extends AppCompatActivity {
             Toast.makeText(this, "Press again to Exit", Toast.LENGTH_SHORT).show();
         }
         backPressed = System.currentTimeMillis();
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
     }
 }

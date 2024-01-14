@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -349,11 +350,43 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i("data","onStart() in Quiz Activity");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("data","onResume() in Quiz Activity");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i("data","onPause() in Quiz Activity");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.i("data","onRestart() in Quiz Activity");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i("data","onStop() in Quiz Activity");
+        finish();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
+        Log.i("data","onDestroy() in Quiz Activity");
     }
 
     private void resultData() {
