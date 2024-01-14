@@ -40,7 +40,7 @@ public class QuizActivity extends AppCompatActivity {
     private final Handler handler = new Handler();
     private int correctAns = 0, wrongAns = 0, score = 0;
 
-    private FinalScoreDialog finalScoreDialog;
+    private TimerDialog timerDialog;
     private int totalSizeOfQuiz;
     private WrongDialog wrongDialog;
     private CorrectDialog correctDialog;
@@ -61,7 +61,7 @@ public class QuizActivity extends AppCompatActivity {
         setupUI();
 
         textColorOfButtons = rb1.getTextColors();
-        finalScoreDialog = new FinalScoreDialog(this);
+        timerDialog = new TimerDialog(this);
         wrongDialog = new WrongDialog(this);
         correctDialog = new CorrectDialog(this);
         playAudioForAnswers = new PlayAudioForAnswers(this);
@@ -342,8 +342,7 @@ public class QuizActivity extends AppCompatActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(getApplicationContext(), QuizActivity.class);
-                    startActivity(intent);
+                    timerDialog.timerDialog();
                 }
             }, 2000);
         }

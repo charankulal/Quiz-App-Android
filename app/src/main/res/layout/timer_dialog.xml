@@ -1,49 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="300dp"
     android:layout_height="250dp"
-    android:layout_gravity="center">
+    android:layout_gravity="center"
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#E30D0D"
         android:orientation="vertical"
-        android:background="#BA9516"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp">
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your Final Score"
-            android:padding="5dp"
-            android:textStyle="bold"
-            android:textColor="#ffffff"
             android:layout_gravity="center"
-            android:textSize="30sp"/>
+            android:padding="5dp"
+            android:text="Time's Up!!"
+            android:textColor="#ffffff"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
+
     <TextView
-        android:id="@+id/textview_final_score"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your Final Score"
+        android:layout_gravity="center"
+        android:layout_marginTop="20sp"
+        android:layout_marginBottom="20dp"
         android:paddingLeft="2dp"
-        android:paddingBottom="10dp"
         android:paddingTop="10dp"
         android:paddingRight="2dp"
-        android:textStyle="bold"
+        android:paddingBottom="10dp"
+        android:text="Game Over"
         android:textColor="#000"
-        android:layout_gravity="center"
         android:textSize="25sp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20sp"/>
+        android:textStyle="bold" />
 
     <Button
-        android:id="@+id/bt_final_dialog"
+        android:id="@+id/bt_timer_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="#473804"
+        android:background="#BB9616"
         android:text="OK"
         android:textColor="#fff"
         android:textSize="30sp"
